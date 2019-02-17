@@ -13,5 +13,8 @@
     "Krystal Chen",
     "Kirby Hsu"
   ],
-  "license": "MIT"
+  "license": "MIT",
+  "dependencies": {
+    "twitter": "^1.7.1"
+  }
 }
