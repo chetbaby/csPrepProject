@@ -4,7 +4,7 @@ var config = require("./config.sys");
 var T = new Twitter(config);
 
 var params = {
-  q: "#presidentsday",
+  q: "#codesmith",
   count: 1,
   result_type: "recent",
   lang: "en"
@@ -23,7 +23,7 @@ function bot() {
           "statuses/update",
           {
             in_reply_to_status_id: id,
-            status: "@" + screen_name + "happy presidents day"
+            status: "@" + screen_name + "🤖 greetings fellow dev!"
           },
           function(err, response) {
             if (err) {
