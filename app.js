@@ -10,14 +10,13 @@ var params = {
   lang: "en"
 };
 
-setInterval(bot, 1000 * 20);
+setInterval(bot, 1000 * 5);
 
 function bot() {
   T.get("search/tweets", params, function(err, data, response) {
     if (!err) {
       for (let i = 0; i < data.statuses.length; i++) {
         let id = data.statuses[i].id_str;
-        // let user = data.statuses[i].user.screen_name;
         let screen_name = data.statuses[i].user.screen_name;
         T.post(
           "statuses/update",
@@ -27,27 +26,25 @@ function bot() {
           },
           function(err, response) {
             if (err) {
-              console.log(err[0].message);
+              console.log(err);
             } else {
-              // let username = response.user.screen_name,
               tweetId = response.id_str;
               console.log(`Replied to: ${screen_name}`);
             }
           }
         );
         T.post("friendships/create", { screen_name }, function(err, res) {
-          // if there was an error, we could not follow the user, console.log err
           if (err) {
             console.log(err);
           } else {
-            console.log(`Followed ${screen_name}!`);
+            console.log(`Followed: ${screen_name}`);
           }
         });
-        T.post("favorites/create", { id }, (err, data, response) => {
+        T.post("favorites/create", { id }, function(err, data, response) {
           if (err) {
             console.log(err);
           } else {
-            console.log(`${data.text} tweet liked!`);
+            console.log(`Liked tweet: ${data.text}`);
           }
         });
       }
